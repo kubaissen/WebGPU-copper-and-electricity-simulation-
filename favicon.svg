@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <!-- Outer Glow Filter -->
+    <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3.5" result="blur1" />
+      <feGaussianBlur stdDeviation="7" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur2" />
+        <feMergeNode in="blur1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Conic-like rainbow stops -->
+    <linearGradient id="rainbow-base" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6af5" />
+      <stop offset="35%" stop-color="#6af5ff" />
+      <stop offset="70%" stop-color="#facc15" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+
+    <!-- 3D Spherical Specular & Depth Gradient -->
+    <radialGradient id="sphere-light" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+      <stop offset="25%" stop-color="#ffffff" stop-opacity="0.4" />
+      <stop offset="60%" stop-color="#000000" stop-opacity="0" />
+      <stop offset="100%" stop-color="#07070d" stop-opacity="0.75" />
+    </radialGradient>
+
+    <!-- Outer Ambient Glow -->
+    <radialGradient id="outer-aura" cx="50%" cy="50%" r="50%">
+      <stop offset="60%" stop-color="#825aff" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#825aff" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Ambient Glow -->
+  <circle cx="32" cy="32" r="28" fill="url(#outer-aura)" opacity="0.65" />
+
+  <!-- Main Rainbow Sphere -->
+  <g filter="url(#neon-glow)">
+    <circle cx="32" cy="32" r="22" fill="url(#rainbow-base)" />
+    <!-- 3D Shading Layer -->
+    <circle cx="32" cy="32" r="22" fill="url(#sphere-light)" style="mix-blend-mode: overlay;" />
+    <!-- Specular Highlight Dot -->
+    <ellipse cx="26" cy="24" rx="7" ry="4.5" transform="rotate(-30 26 24)" fill="#ffffff" opacity="0.6" />
+  </g>
+</svg>
